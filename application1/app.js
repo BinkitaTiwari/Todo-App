@@ -24,20 +24,31 @@ function addTodo(text) {
 
 function toggleDone(key) {
   const index = todoItems.findIndex(item => item.id === Number(key));
-  //todoItems[index].checked = !todoItems[index].checked;
+  todoItems[index].checked = !todoItems[index].checked;
 
   const item = document.querySelector(`[data-key='${key}']`);
-  if (!todoItems[index].checked) {
+  if (todoItems[index].checked) {
     item.classList.add('done');
 
   } 
-  /*else if(!todoItems[index].checked)
+  else 
   {
     item.classList.remove('done');
+  }
+}
+  /*function dropDown(key)
+  {
+    const index = todoItems.findIndex(item => item.id === Number(key));
+    const items=document.querySelector(`[data-key='${key}']`)
+    if(!todoItems[index].checked)
+    {
+        items.classList.remove('done');
+    }
   }*/
+  
     //sitem.classList.remove('done');
   
-}
+
 
 function deleteTodo(key) {
   todoItems = todoItems.filter(item => item.id !== Number(key));
@@ -63,7 +74,10 @@ list.addEventListener('click', event => {
   if (event.target.classList.contains('js-tick')) {
     const itemKey = event.target.parentElement.dataset.key;
     toggleDone(itemKey);
+
   }
+  
+
   
   if (event.target.classList.contains('js-delete-todo')) {
     const itemKey = event.target.parentElement.dataset.key;
